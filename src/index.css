@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #333333;
+    background-color: #FCFCFD;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Custom soundwave pulse animation for active recall / AI speaking */
+@keyframes soundwave {
+  0%, 100% {
+    height: 12px;
+  }
+  50% {
+    height: 36px;
+  }
+}
+
+.soundwave-bar {
+  animation: soundwave 1.2s ease-in-out infinite;
+}
+
+.soundwave-bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.soundwave-bar:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.soundwave-bar:nth-child(4) {
+  animation-delay: 0.1s;
+}
+.soundwave-bar:nth-child(5) {
+  animation-delay: 0.3s;
+}
+
+/* Handwritten Notebook Ruled Paper Theme */
+.notebook-ruled-paper {
+  background-color: #fdfbf7;
+  background-image: 
+    linear-gradient(90deg, transparent 52px, #f87171 53px, #f87171 54.5px, transparent 55px),
+    repeating-linear-gradient(transparent, transparent 31px, #e2e8f0 32px);
+  background-size: 100% 32px, 100% 32px;
+  line-height: 32px;
+}
+
+.font-handwriting {
+  font-family: 'Caveat', 'Kalam', cursive, sans-serif;
+}
+
+.font-notebook {
+  font-family: 'Kalam', 'Caveat', cursive, sans-serif;
+}
+
+/* Print & PDF Export Rules */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm 12mm 15mm 12mm;
+  }
+
+  /* Reset all fixed/hidden overflow parents across App, root, and flex containers */
+  html, body, #root, div, section, main {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    position: static !important;
+  }
+
+  /* Hide app navigation, headers, sidebars, buttons, chat input */
+  nav, header, aside, .notes-studio-toolbar, button, input, form, [role="button"] {
+    display: none !important;
+  }
+
+  /* Make sure printable notes area is visible and takes full width */
+  #printable-notes-area {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #fdfbf7 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .a4-notes-page {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: transparent !important;
+  }
+
+  .section-container {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 24px;
+  }
+}
